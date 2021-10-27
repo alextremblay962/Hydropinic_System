@@ -1,5 +1,5 @@
 const SerialPort = require('serialport')
-const port = new SerialPort('COM24', { baudRate: 115200 })
+const port = new SerialPort('COM7', { baudRate: 115200 })
 
 
 port.on('readable', function () {
