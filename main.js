@@ -2,6 +2,10 @@ const SerialPort = require('serialport')
 const port = new SerialPort('COM24', { baudRate: 115200 })
 
 
+port.on('readable', function () {
+    console.log('Data:', port.read().toString())
+})
+
 setInterval(() => {
     let date = new Date()
 
