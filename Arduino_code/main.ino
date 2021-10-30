@@ -16,7 +16,7 @@ need for arduino plc shield
 
 void setup()
 {
-    Serial.begin(115200);
+    Serial.begin(9600);
     pinMode(light1, OUTPUT);
     pinMode(light2, OUTPUT);
     pinMode(fan, OUTPUT);
@@ -25,8 +25,8 @@ void setup()
 void loop()
 {
     if (Serial.available()) {
-        String str = Serial.readString();
-
+        String str = Serial.readStringUntil('\n');
+        
         StaticJsonBuffer<200> jsonBuffer;
         JsonObject& root = jsonBuffer.parseObject(str);
 
@@ -46,6 +46,9 @@ void loop()
         else if (topic == "hydro/fan") {
             digitalWrite(fan, payload);
             Serial.println("fan");
+        }
+        else{
+            Serial.println("invalid");
         }
     }
 }

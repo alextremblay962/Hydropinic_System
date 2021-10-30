@@ -1,5 +1,5 @@
 const SerialPort = require('serialport')
-const port = new SerialPort('COM7', { baudRate: 115200 })
+const port = new SerialPort('COM24', { baudRate: 9600 })
 
 
 port.on('readable', function () {
@@ -11,8 +11,8 @@ setInterval(() => {
 
     if(date.getHours() >= 7 && date.getHours() < 21){
 
-        sendDevice("hydro/light1",1)
-        sendDevice("hydro/fan", 1)
+        sendDevice("hydro/light1",1,sendDevice("hydro/fan", 1))
+        
     }else{
         sendDevice("hydro/light1",0)
         sendDevice("hydro/fan", 0)
@@ -20,7 +20,7 @@ setInterval(() => {
     
 }, 2000);
 
-function sendDevice(topic, payload) {
+function sendDevice(topic, payload, callback) {
     var foo = {
         "topic": topic,
         "payload": payload
@@ -30,6 +30,8 @@ function sendDevice(topic, payload) {
         if (err) {
             return console.log('Error on write: ', err.message)
         } 
-        //console.log('message written')
+        console.log('message written')
     })
+
+    callback
 }
