@@ -1,26 +1,32 @@
 class Device {
-    constructor(name, topic, port, callback) {
+    constructor(name, topic, Port, callback) {
         this.name = name
         this.type = "device"
         this.topic = topic
-        this.port = port
+        this.port = Port
         this.callback = callback
         //this.val = this.startDevice()
 
-        // this.port.on('readable', function () {
-        //     console.log(this.name + ' Data:', port.read())
-        //   })
+        Port.on('readable', function () {
+            let data  = Port.read()
 
+            if(data != null){
+                console.log("read data: " + data.toString())
+            }
+            else{
+                console.log("Null")
+            }
+            //console.log(this.name + ' Data:', Port.read())
+          })
     }
+    
     tunrON() {
         console.log(this.name + " ON")
-        this.sendDevice("hydro/light1",1)
-
+        this.sendDevice(this.topic,1)
     }
 
     tunrOFF() {
         console.log(this.name + " OFF")
-
     }
 
     sendDevice(topic, payload) {
@@ -35,16 +41,13 @@ class Device {
             }
             //console.log('message written')
         })
-
         //console.log('Data:', port.read())
     }
 
     readValue(){
-        this.sendDevice(this.topic , 1)
-        
+       // this.sendDevice(this.topic , 1)
+        //console.log(this.name + ' Data:', port.read().toString())
     }
-
-
 
 }
 module.exports = Device

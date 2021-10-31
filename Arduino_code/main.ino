@@ -37,15 +37,18 @@ void loop()
 
         if (topic == "hydro/light1") {
             digitalWrite(light1, payload);
+            delay(50);
             Serial.println("light1");
 
         } else if (topic == "hydro/light2") {
             digitalWrite(light2, payload);
+            delay(50);
             Serial.println("light2");
         }
 
         else if (topic == "hydro/fan") {
             digitalWrite(fan, payload);
+            delay(50);
             Serial.println("fan");
         }
         else{
