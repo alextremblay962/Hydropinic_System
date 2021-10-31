@@ -14,8 +14,8 @@ data = data.encode()
 
 print(data)
 
-ser.write(data)
+ser.write(b'A')
 
 
-hello = ser.readline().decode("ascii")
+hello = ser.readline()#.decode("ascii")
 print(hello)
