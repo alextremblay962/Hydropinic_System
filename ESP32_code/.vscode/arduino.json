@@ -1,0 +1,6 @@
+{
+    "port": "COM7",
+    "board": "espressif:esp32:lolin32",
+    "configuration": "FlashFreq=80,UploadSpeed=921600",
+    "sketch": "main.ino"
+}
