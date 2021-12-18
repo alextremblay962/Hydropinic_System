@@ -58,10 +58,7 @@ void receivedCallback(char* topic, byte* payload, unsigned int length)
         Serial.println(data);
         ledcWrite(led2Channel, data);
     }
-    //JsonObject& root = jsonBuffer.parseObject(inData);
 
-    //String axis = root["axis"];
-    //int button = root["button"];
 }
 
 void mqttconnect()
