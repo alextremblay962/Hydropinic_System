@@ -16,9 +16,9 @@ PubSubClient client(espClient);
 
 // setting PWM properties
 const int freq = 5000;
+const int resolution = 8;
 const int led1Channel = 0;
 const int led2Channel = 1;
-const int resolution = 8;
 /* topics */
 
 const char* update_Topic = "update";
